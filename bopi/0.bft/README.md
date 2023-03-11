@@ -133,18 +133,20 @@ The `idro` [declaration](https://ordinals.com/inscription/abf461b9b5c7b8302f439d
 
 The limit rule define the maximum number of idro tokens that can be minted in why inscription as follow:
 ```
-144, 2048
-288, 1024
-432, 512
-576, 256
-720, 128
-864, 64
-1008, 32
-1152, 16
-1296, 8
-1440, 4
-1584, 2
-1728, 1
+  [
+    [144, 2048],
+    [288, 1024],
+    [432, 512],
+    [576, 256],
+    [720, 128],
+    [864, 64],
+    [1008, 32],
+    [1152, 16],
+    [1296, 8],
+    [1440, 4],
+    [1584, 2],
+    [1728, 1]
+  ]
 ```
 
 Meaning that for the 144 blocks following #780310, the mint calls can mint up to 2048 idros (if max supply has not been reached). This limit is havled every 144 blocks (about a day), until it reaches 1.
