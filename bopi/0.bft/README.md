@@ -2,7 +2,7 @@
 
 > Read every word if you decide to test. These will be worthless.
 
-The bft BOP describes is a simple experimental protocol to describe how to manage Fungible Tokens.
+The bft BOP is a simple experimental protocol to describe how to manage Fungible Tokens.
 
 > A lot of this document is inspired by the [brc-20 experiment](https://domo-2.gitbook.io/brc-20-experiment/).
 > The idea is to explore if fees and block space can be optimized with data structures lighter than json.
