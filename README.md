@@ -4,7 +4,9 @@
 
 BOP is an experimental standard to describe an use protocols on Bitcoin with Ordinals.
 
-> A lot of this document is inspired by the [brc-20 experiment](https://domo-2.gitbook.io/brc-20-experiment/). The idea is to explore if some fees and block space can be save with data structure more optimized than json.
+> A lot of this document is inspired by the [brc-20 experiment](https://domo-2.gitbook.io/brc-20-experiment/).
+> The idea is to explore if fees and block space can be optimized with data structures lighter than json.
+> I also want to explore inscribing protocols details on-chain.
 
 Just like the brc-20 experiment:
   - BOP should by no means be considered THE standard for anything.
@@ -12,6 +14,13 @@ Just like the brc-20 experiment:
   - Or maybe it's a bad idea.
   - This is a dynamic experiment, and I strongly discourage any financial decisions to be made on the basis of its design.
   - Contributation and ideas here on GitHub or @ me on [Twitter](https://twitter.com/cohars).
+
+---
+
+## Implementations
+
+Visit the ["bopi" directory](/bopi) to explore BOP implementations.
+- [0.bft](bopi/0.bft/README.md) is an experiment for a Fungible Token standard.
 
 ---
 
@@ -30,7 +39,7 @@ The mean that once this is inscribed, futures inscriptions declaring a BOP with 
 
 Additionally, the protocol declaration can include text to describe the protocols and the functions it exposes. This data is optional and only gives general guidances on how to use a BOP.
 
-This `fakeft` protocol example will describe 3 functions: `deploy`, `mint` and `transfert`, that will accept certain types of parameters.
+This `fakeft` protocol example will describe 3 functions: `deploy`, `mint` and `transfer`, that will accept certain types of parameters.
 
 ```
 #d.42.fakeft.
@@ -48,12 +57,12 @@ This `fakeft` protocol example will describe 3 functions: `deploy`, `mint` and `
 - `mint` accepts 2 parameters
   - an `uint`, the ID of the *fakeft* to mint
   - an optional `uint`, the quantity to mint, the `limit` will be used if this parameter is omitted
-- `transfert` accepts 3 parameters
+- `transfer` accepts 3 parameters
   - an `uint`, the ID of the *fakeft*
   - a `word` (lowercase alphanumeric characters and _-), the name of the *fakeft*
   - an optional `addr`, the receiving address
 
-Note: see the `!` in `2:!transfert`? It means that this inscription has to be transferred to be effective. In this case, the address it is transferred to will get the supply of *fakeft*. The optional parameter `addr:?to` can be used a safety check for this transfert.
+Note: see the `!` in `2:!transfer`? It means that this inscription has to be transferred to be effective. In this case, the address it is transferred to will get the supply of *fakeft*. The optional parameter `addr:?to` can be used a safety check for this transfer.
 
 ## Call a BOP
 
@@ -86,9 +95,9 @@ The argument `0` is passed to mint the *fakeft* with ID `0` (doge in this exampl
 ```
 /!\ *This is just an example, do not inscribe it*
 
-### Transfert
+### Transfer
 
-Transfert 10 doges.
+Transfer 10 doges.
 Assuming that the address inscribing this has at least 10 doges.
 
 ```
@@ -121,7 +130,7 @@ Things gets interesting when the protocol describes the functions it exposes:
   - it give guidance on how to use a protocol,
   - it could allow to automatically generate HTML forms to call any BOP.
 
-Most of the BOP logic rely on a first-is-first principal, meaning, an inscription will be often tied to the first address inscribing it and transfert are ignored.  
+Most of the BOP logic rely on a first-is-first principal, meaning, an inscription will be often tied to the first address inscribing it and transfer are ignored.  
 **So if you use an inscription service that mints to itself before sending the inscription to you, the inscription service will be the rightful owner of the tokens.**
 
 **Trasnfers** can have meaning, the function modifier `!` can be used to make it explicit.
