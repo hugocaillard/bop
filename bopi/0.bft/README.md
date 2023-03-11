@@ -69,9 +69,9 @@ Notes:
 
 ---
 
-## Implementation exemple
+# Implementation exemple
 
-### idro
+## idro
 
 This is the first BFT deployed.  
 **`idro` has the ID `0`**
@@ -106,7 +106,7 @@ Or short version:
 #c.0.0&0,idro,21e12,[[144,2048],[288,1024],[432,512],[576,256],[720,128],[864,64],[1008,32],[1152,16],[1296,8],[1440,4],[1584,2],[1728,1]]
 ```
 
-#### Mint `idro`
+### Mint `idro`
 
 Mint the maximum authorized quantity of `idro`s.
 ```
@@ -120,9 +120,50 @@ Mint a specific quantity:
 #c.0.1&0,10
 ```
 
-#### Transfer `idro` 
+### Transfer `idro` 
 
 Transfer 100 `idro` to the address this inscription will be transferred to:
 ```
 #c.0.2&0,100
 ```
+
+### About the mint limit:
+
+The `idro` [declaration](https://ordinals.com/inscription/abf461b9b5c7b8302f439da830109c5642b64b49867ba9b737f424bd4cf2b3f7i0) was inscribed in bitcoin block #780310.
+
+The limit rule define the maximum number of idro tokens that can be minted in why inscription as follow:
+```
+144, 2048
+288, 1024
+432, 512
+576, 256
+720, 128
+864, 64
+1008, 32
+1152, 16
+1296, 8
+1440, 4
+1584, 2
+1728, 1
+```
+
+Meaning that for the 144 blocks following #780310, the mint calls can mint up to 2048 idros (if max supply has not been reached). This limit is havled every 144 blocks (about a day), until it reaches 1.
+
+
+| From block (included) | To block (include) | Mint limit |
+| --- | --- | --- |
+| #780311 |	#780454 | 2048 |
+| #780455 |	#780598 | 1024 |
+| #780599 |	#780742 |  512 |
+| #780743 |	#780886 |  256 |
+| #780887 |	#781030 |  128 |
+| #781031 |	#781174 |   64 |
+| #781175 |	#781318 |   32 |
+| #781319 |	#781462 |   16 |
+| #781463 |	#781606 |    8 |
+| #781607 |	#781750 |    4 |
+| #781751 |	#781894 |    2 |
+| #781895 |	infinity |   1 |
+
+Reminder:  
+In the event of two balance changing events happening within the same block the one with the higher fee is prioritized. So only 1 mint operation per block per address can be achieved.
